@@ -9,6 +9,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { logIn, googleSignIn } = useUserAuth();
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -17,6 +18,16 @@ export default function Register() {
     try {
       await signUp(email, password);
       navigate("/");
+    }
+    catch (err) {
+      setError(err.message);
+    }
+  };
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/home");
     }
     catch (err) {
       setError(err.message);
@@ -46,7 +57,7 @@ export default function Register() {
       </form>
       
       <div className='gbtn'>
-        <GoogleButton type="dark"/>
+        <GoogleButton type="dark" onClick={handleGoogleSignIn}/>
       </div>
       </div>
       </div>

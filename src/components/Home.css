@@ -1,0 +1,7 @@
+.welcomemsg{
+    color: brown;
+    position: absolute;
+    right: 2%;
+    font-size: large;
+    font-weight: 600;
+}
